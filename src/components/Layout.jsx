@@ -7,7 +7,7 @@ import First from "./First";
 import MyHome from "./MyHome";
 import profile from "/public/image/profile.png";
 
-const Layout = () => {
+const MyLayout = () => {
   const [selectedComponent, setSelectedComponent] = useState();
   const [selectedButton, setSelectedButton] = useState();
 
@@ -49,7 +49,7 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default MyLayout;
 
 const S = {};
 
