@@ -19,7 +19,13 @@ const MyLayout = () => {
     <>
       <S.Wrapper>
         <S.Profile>
-          <Image src={profile} width={50} />
+          <Image
+            alt="profile"
+            priority={true} // true false
+            src={profile}
+            height={50}
+            width={50}
+          />
         </S.Profile>
         <S.Container>
           <S.Ul>

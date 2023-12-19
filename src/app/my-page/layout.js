@@ -3,8 +3,8 @@ import MyLayout from "@/components/Layout";
 const Layout = (props) => {
   return (
     <>
-      {props.child}
       <MyLayout />
+      <div>{props.children}</div>
     </>
   );
 };
