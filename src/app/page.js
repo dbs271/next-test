@@ -1,18 +1,31 @@
 "use client";
 
 import Unity, { UnityContext } from "nextjs-unity-webgl";
+import { useEffect, useState } from "react";
 
 const unityContext = new UnityContext({
-  loaderUrl: "/Build/testbuild.loader.js",
-  dataUrl: "/Build/testbuild.data",
-  frameworkUrl: "/Build/testbuild.framework.js",
-  codeUrl: "/Build/testbuild.wasm",
+  loaderUrl: "/Build/testfinal.loader.js",
+  dataUrl: "/Build/testfinal.data",
+  frameworkUrl: "/Build/testfinal.framework.js",
+  codeUrl: "/Build/testfinal.wasm",
 });
 
 export default function Home() {
-  function TestA() {
-    unityContext.send("TestBridge", "ClickBtn1()");
-  }
+  const TestA = () => {
+    unityContext.send("GameController", "ClickBtn1");
+  };
+  const [gameMsg, setGameMsg] = useState("");
+  const [score, setScore] = useState(0);
+
+  useEffect(() => {
+    unityContext.on("CallReactScore", (score) => {
+      setScore(score);
+    });
+    unityContext.on("CallReactMessage", (gameMsg) => {
+      setGameMsg(gameMsg);
+    });
+  }, []);
+
   return (
     <div>
       <div>
@@ -24,7 +37,11 @@ export default function Home() {
           }}
         />
       </div>
-      <button onClick={TestA}>click</button>
+      <div>
+        <button onClick={TestA}>click</button>
+      </div>
+      <p>{score}</p>
+      <p> {gameMsg} </p>
     </div>
   );
 }
