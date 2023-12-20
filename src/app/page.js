@@ -4,10 +4,10 @@ import Unity, { UnityContext } from "nextjs-unity-webgl";
 import { useEffect, useState } from "react";
 
 const unityContext = new UnityContext({
-  loaderUrl: "/Build/testfinal.loader.js",
-  dataUrl: "/Build/testfinal.data",
-  frameworkUrl: "/Build/testfinal.framework.js",
-  codeUrl: "/Build/testfinal.wasm",
+  loaderUrl: "/Build/testbuild.loader.js",
+  dataUrl: "/Build/testbuild.data",
+  frameworkUrl: "/Build/testbuild.framework.js",
+  codeUrl: "/Build/testbuild.wasm",
   productName: "Aim Test",
   productVersion: "1.0.0",
   companyName: "HG",
@@ -21,6 +21,14 @@ export default function Home() {
   const [score, setScore] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [progression, setProgression] = useState(0);
+
+  const TestB = () => {
+    unityContext.send("GameController", "SetSensitivity", 1.0);
+  };
+
+  const TestC = () => {
+    unityContext.send("GameController", "SetNumber", 1000);
+  };
 
   const FullScreen = () => {
     unityContext.setFullscreen(true);
@@ -48,7 +56,7 @@ export default function Home() {
   return (
     <div>
       <p>Loading {progression * 100} %</p>
-      <div onClick={requestPointerLock}>
+      <div>
         <Unity
           unityContext={unityContext}
           style={{
@@ -65,6 +73,9 @@ export default function Home() {
       <button onClick={requestPointerLock}>Lock Pointer</button>
       <p>{score}</p>
       <p> {gameMsg} </p>
+
+      <button onClick={TestB}>민감도</button>
+      <button onClick={TestC}>btn size</button>
     </div>
   );
 }
