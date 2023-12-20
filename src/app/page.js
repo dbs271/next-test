@@ -21,13 +21,17 @@ export default function Home() {
   const [score, setScore] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [progression, setProgression] = useState(0);
+  const [state, setState] = useState(0);
 
   const TestB = () => {
-    unityContext.send("GameController", "SetSensitivity", 1.0);
+    unityContext.send("GameController", "SetSensitivity", state);
   };
 
   const TestC = () => {
     unityContext.send("GameController", "SetNumber", 1000);
+  };
+  const TestD = () => {
+    unityContext.send("GameController", "SetNumber", 10);
   };
 
   const FullScreen = () => {
@@ -36,6 +40,11 @@ export default function Home() {
 
   const requestPointerLock = () => {
     unityContext.requestPointerLock();
+  };
+
+  const SensitivityUp = () => {
+    setState(state + 1.0);
+    TestB();
   };
 
   useEffect(() => {
@@ -74,8 +83,9 @@ export default function Home() {
       <p>{score}</p>
       <p> {gameMsg} </p>
 
-      <button onClick={TestB}>민감도</button>
-      <button onClick={TestC}>btn size</button>
+      <button onClick={SensitivityUp}>민감도+</button>
+      <button onClick={TestC}>btn size up</button>
+      <button onClick={TestD}>btn size down</button>
     </div>
   );
 }
