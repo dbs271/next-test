@@ -8,6 +8,9 @@ const unityContext = new UnityContext({
   dataUrl: "/Build/testfinal.data",
   frameworkUrl: "/Build/testfinal.framework.js",
   codeUrl: "/Build/testfinal.wasm",
+  productName: "Aim Test",
+  productVersion: "1.0.0",
+  companyName: "HG",
 });
 
 export default function Home() {
@@ -49,11 +52,12 @@ export default function Home() {
         <Unity
           unityContext={unityContext}
           style={{
-            width: 1100,
-            height: 1024,
+            width: 500,
+            height: 500,
           }}
         />
       </div>
+
       <div>
         <button onClick={TestA}>click</button>
         <button onClick={FullScreen}>전체화면</button>
