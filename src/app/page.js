@@ -16,6 +16,16 @@ export default function Home() {
   };
   const [gameMsg, setGameMsg] = useState("");
   const [score, setScore] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [progression, setProgression] = useState(0);
+
+  const FullScreen = () => {
+    unityContext.setFullscreen(true);
+  };
+
+  const requestPointerLock = () => {
+    unityContext.requestPointerLock();
+  };
 
   useEffect(() => {
     unityContext.on("CallReactScore", (score) => {
@@ -24,22 +34,31 @@ export default function Home() {
     unityContext.on("CallReactMessage", (gameMsg) => {
       setGameMsg(gameMsg);
     });
+    unityContext.on("loaded", () => {
+      setIsLoaded(true);
+    });
+    unityContext.on("progress", (progression) => {
+      setProgression(progression);
+    });
   }, []);
 
   return (
     <div>
-      <div>
+      <p>Loading {progression * 100} %</p>
+      <div onClick={requestPointerLock}>
         <Unity
           unityContext={unityContext}
           style={{
-            width: 300,
-            height: 300,
+            width: 1100,
+            height: 1024,
           }}
         />
       </div>
       <div>
         <button onClick={TestA}>click</button>
+        <button onClick={FullScreen}>전체화면</button>
       </div>
+      <button onClick={requestPointerLock}>Lock Pointer</button>
       <p>{score}</p>
       <p> {gameMsg} </p>
     </div>
