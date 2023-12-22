@@ -1,5 +1,6 @@
 "use client";
 
+import { Slider } from "@mui/material";
 import Unity, { UnityContext } from "nextjs-unity-webgl";
 import { useEffect, useState } from "react";
 
@@ -17,14 +18,16 @@ export default function Home() {
   const TestA = () => {
     unityContext.send("GameController", "ClickBtn1");
   };
+
   const [gameMsg, setGameMsg] = useState("");
   const [score, setScore] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [progression, setProgression] = useState(0);
   const [state, setState] = useState(0);
+  const [slider, setSlider] = useState(50);
 
   const TestB = () => {
-    unityContext.send("GameController", "SetSensitivity", state);
+    unityContext.send("GameController", "SetSensitivity", slider);
   };
 
   const TestC = () => {
@@ -45,6 +48,10 @@ export default function Home() {
   const SensitivityUp = () => {
     setState(state + 1.0);
     TestB();
+  };
+
+  const handleSliderChange = (e, newValue) => {
+    setSlider(newValue);
   };
 
   useEffect(() => {
@@ -86,6 +93,17 @@ export default function Home() {
       <button onClick={SensitivityUp}>민감도+</button>
       <button onClick={TestC}>btn size up</button>
       <button onClick={TestD}>btn size down</button>
+
+      <div>
+        {slider}
+        <Slider
+          style={{ width: "300px" }}
+          value={slider}
+          aria-label="Default"
+          valueLabelDisplay="auto"
+          onChange={handleSliderChange}
+        />
+      </div>
     </div>
   );
 }

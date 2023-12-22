@@ -1,3 +1,5 @@
 const Layout = (props) => {
-  return <div>{props.children}</div>;
+  return <>{props.children}</>;
 };
+
+export default Layout;
