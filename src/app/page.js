@@ -24,17 +24,17 @@ export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [progression, setProgression] = useState(0);
   const [state, setState] = useState(0);
-  const [slider, setSlider] = useState(50);
+  const [slider, setSlider] = useState(0);
 
   const TestB = () => {
-    unityContext.send("GameController", "SetSensitivity", slider);
+    unityContext.send("GameController", "SetSensitivity", state);
   };
 
   const TestC = () => {
-    unityContext.send("GameController", "SetNumber", 1000);
+    unityContext.send("GameController", "SetNumber", slider);
   };
   const TestD = () => {
-    unityContext.send("GameController", "SetNumber", 10);
+    unityContext.send("GameController", "SetNumber", slider);
   };
 
   const FullScreen = () => {
@@ -52,6 +52,8 @@ export default function Home() {
 
   const handleSliderChange = (e, newValue) => {
     setSlider(newValue);
+    TestC(newValue);
+    TestD(newValue);
   };
 
   useEffect(() => {
@@ -102,6 +104,9 @@ export default function Home() {
           aria-label="Default"
           valueLabelDisplay="auto"
           onChange={handleSliderChange}
+          min={0}
+          max={1}
+          step={0.1}
         />
       </div>
     </div>
