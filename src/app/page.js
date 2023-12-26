@@ -25,7 +25,7 @@ export default function Home() {
 
   return (
     <div>
-      <Link href={"/game/AimLab"}>AimLab</Link>
+      <Link href={"/game/ForTest"}>AimLab</Link>
     </div>
   );
 }

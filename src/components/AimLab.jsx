@@ -4,10 +4,10 @@ import Unity, { UnityContext } from "nextjs-unity-webgl";
 import React, { useEffect, useState } from "react";
 
 const unityContext = new UnityContext({
-  loaderUrl: "/Build/testBuild.loader.js",
-  dataUrl: "/Build/testBuild.data",
-  frameworkUrl: "/Build/testBuild.framework.js",
-  codeUrl: "/Build/testBuild.wasm",
+  loaderUrl: "/Build/testbuild.loader.js",
+  dataUrl: "/Build/testbuild.data",
+  frameworkUrl: "/Build/testbuild.framework.js",
+  codeUrl: "/Build/testbuild.wasm",
   productName: "Aim Test",
   productVersion: "1.0.0",
   companyName: "HG",
@@ -29,7 +29,7 @@ const AimLab = ({ id }) => {
         <Unity
           unityContext={unityContext}
           style={{
-            width: 500,
+            width: 940,
             height: 500,
           }}
         />
