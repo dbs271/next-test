@@ -4,10 +4,10 @@ import Unity, { UnityContext } from "nextjs-unity-webgl";
 import React, { useEffect, useState } from "react";
 
 const unityContext = new UnityContext({
-  loaderUrl: "/Build/testbuild.loader.js",
-  dataUrl: "/Build/testbuild.data",
-  frameworkUrl: "/Build/testbuild.framework.js",
-  codeUrl: "/Build/testbuild.wasm",
+  loaderUrl: "/Build/Build.loader.js",
+  dataUrl: "/Build/Build.data.unityweb",
+  frameworkUrl: "/Build/Build.framework.js.unityweb",
+  codeUrl: "/Build/Build.wasm.unityweb",
   productName: "Aim Test",
   productVersion: "1.0.0",
   companyName: "HG",
